@@ -1,57 +1,38 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class GroundSensor : MonoBehaviour {
 
-    public PlayerController m_root;
+    public PlayerController mRoot;
 
-    // Use this for initialization
     void Start()
     {
-        m_root = this.transform.root.GetComponent<PlayerController>();
-       
+        mRoot = this.transform.root.GetComponent<PlayerController>();
     }
 
- 
-
-    ContactPoint2D[] contacts = new ContactPoint2D[1];
-
+    ContactPoint2D[] _contacts = new ContactPoint2D[1];
     void OnTriggerStay2D(Collider2D other)
     {
-    
-
-        if (other.CompareTag("Ground") || other.CompareTag("Block"))
+        if (other.CompareTag($"Ground") || other.CompareTag($"Block"))
         {
-
-            if (other.CompareTag("Ground"))
-            {
-                m_root.Is_DownJump_GroundCheck = true;
-
-            }
+            if (other.CompareTag($"Ground"))
+                mRoot.isDownJumpGroundCheck = true;
             else
-            {
-                m_root.Is_DownJump_GroundCheck = false;
-            }
+                mRoot.isDownJumpGroundCheck = false;
 
-            if (m_root.m_rigidbody.velocity.y <= 0)
+            if (mRoot.mRigidbody.velocity.y <= 0)
             {
 
-                m_root.isGrounded = true;
-                m_root.currentJumpCount = 0;
+                mRoot.isGrounded = true;
+                mRoot.currentJumpCount = 0;
             }
-         
-        
         }
     }
-
+    
     void OnTriggerExit2D(Collider2D other)
     {
-
-        m_root.isGrounded = false;
-     
+        mRoot.isGrounded = false;
     }
-
-
-
 }

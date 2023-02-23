@@ -1,82 +1,49 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using UnityEngine;
 
 public abstract class PlayerController :MonoBehaviour
 {
-    public bool IsSit = false;
+    public bool isSit = false;
     public int currentJumpCount = 0; 
     public bool isGrounded = false;
-    public bool OnceJumpRayCheck = false;
+    public bool onceJumpRayCheck = false;
 
-    public bool Is_DownJump_GroundCheck = false;   // 다운 점프를 하는데 아래 블록인지 그라운드인지 알려주는 불값
-    protected float m_MoveX;
-    public Rigidbody2D m_rigidbody;
-    protected CapsuleCollider2D m_CapsulleCollider;
-    protected Animator m_Anim;
+    public bool isDownJumpGroundCheck = false; 
+    protected float MMoveX;
+    public Rigidbody2D mRigidbody;
+    protected CapsuleCollider2D MCapsuleCollider;
+    protected Animator MAnim;
 
     [Header("[Setting]")]
-    public float MoveSpeed = 6;
-    public int JumpCount = 2;
+    public float moveSpeed = 6;
+    public int jumpCount = 2;
     public float jumpForce = 15f;
+    
+    protected Camera MainCamera;
 
-    protected void AnimUpdate()
+    protected bool IsLeft = true;
+    protected void Flip(bool bLeft)
     {
-
-
-        if (!m_Anim.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
-        {
-            if (Input.GetKey(KeyCode.Mouse0))
-            {
-
-
-                m_Anim.Play("Attack");
-            }
-            else
-            {
-
-                if (m_MoveX == 0)
-                {
-                    if (!OnceJumpRayCheck)
-                        m_Anim.Play("Idle");
-
-                }
-                else
-                {
-
-                    m_Anim.Play("Run");
-                }
-
-            }
-
-
-
-        }
-
-    }
-
-
-
-
-    protected void Filp(bool bLeft)
-    {
-
-
+        if(IsLeft == bLeft)
+            return;
+        IsLeft = bLeft;
         transform.localScale = new Vector3(bLeft ? 1 : -1, 1, 1);
-
     }
 
-
-    protected void prefromJump()
+    protected bool MouseToTheLeft()
     {
-        m_Anim.Play("Jump");
+        return MainCamera.ScreenToWorldPoint(Input.mousePosition).x < transform.position.x;
+    }
 
-        m_rigidbody.velocity = new Vector2(0, 0);
+    protected void PerformJump()
+    {
+        MAnim.Play("Jump");
 
-        m_rigidbody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+        mRigidbody.velocity = new Vector2(0, 0);
 
-        OnceJumpRayCheck = true;
+        mRigidbody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+
+        onceJumpRayCheck = true;
         isGrounded = false;
 
 
@@ -89,95 +56,58 @@ public abstract class PlayerController :MonoBehaviour
         if (!isGrounded)
             return;
 
-
-        if (!Is_DownJump_GroundCheck)
+        if (!isDownJumpGroundCheck)
         {
-            m_Anim.Play("Jump");
+            MAnim.Play("Jump");
 
-            m_rigidbody.AddForce(-Vector2.up * 10);
+            mRigidbody.AddForce(-Vector2.up * 10);
             isGrounded = false;
 
-            m_CapsulleCollider.enabled = false;
+            MCapsuleCollider.enabled = false;
 
-            StartCoroutine(GroundCapsulleColliderTimmerFuc());
-
+            StartCoroutine(GroundCapsuleColliderTimerFuc());
         }
-
-
     }
 
-    IEnumerator GroundCapsulleColliderTimmerFuc()
+    IEnumerator GroundCapsuleColliderTimerFuc()
     {
         yield return new WaitForSeconds(0.3f);
-        m_CapsulleCollider.enabled = true;
+        MCapsuleCollider.enabled = true;
     }
 
 
-    //////바닥 체크 레이케스트 
-    Vector2 RayDir = Vector2.down;
+    float _pretmpY;
+    float _groundCheckUpdateTic = 0;
+    private const float GroundCheckUpdateTime = 0.01f;
 
-
-    float PretmpY;
-    float GroundCheckUpdateTic = 0;
-    float GroundCheckUpdateTime = 0.01f;
     protected void GroundCheckUpdate()
     {
-        if (!OnceJumpRayCheck)
+        if (!onceJumpRayCheck)
             return;
-
-        GroundCheckUpdateTic += Time.deltaTime;
-
-
-
-        if (GroundCheckUpdateTic > GroundCheckUpdateTime)
+        _groundCheckUpdateTic += Time.deltaTime;
+        if (_groundCheckUpdateTic > GroundCheckUpdateTime)
         {
-            GroundCheckUpdateTic = 0;
+            _groundCheckUpdateTic = 0;
 
-
-
-            if (PretmpY == 0)
+            if (_pretmpY == 0)
             {
-                PretmpY = transform.position.y;
+                _pretmpY = transform.position.y;
                 return;
             }
 
-
-
-            float reY = transform.position.y - PretmpY;  //    -1  - 0 = -1 ,  -2 -   -1 = -3
+            float reY = transform.position.y - _pretmpY;  //    -1  - 0 = -1 ,  -2 -   -1 = -3
 
             if (reY <= 0)
             {
-
                 if (isGrounded)
                 {
-
                     LandingEvent();
-                    OnceJumpRayCheck = false;
-
+                    onceJumpRayCheck = false;
                 }
-                else
-                {
-
-                    Debug.Log("안부딪힘");
-
-                }
-
-
             }
-
-
-            PretmpY = transform.position.y;
-
+            _pretmpY = transform.position.y;
         }
-
-
-
-
     }
-
-
-
+    
     protected abstract void LandingEvent();
-
-
 }

@@ -1,11 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="149d77f2-9eff-4f57-8688-5f704ee7e0a4" name="Changes" comment="" />
+    <list default="true" id="149d77f2-9eff-4f57-8688-5f704ee7e0a4" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Many-problems-and-just-one-solution/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Many-problems-and-just-one-solution/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Low_Swordman/Demo/Scripts/GroundSensor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Low_Swordman/Demo/Scripts/GroundSensor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Low_Swordman/Demo/Scripts/PlayerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Low_Swordman/Demo/Scripts/PlayerController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Low_Swordman/Demo/Scripts/Swordman.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Low_Swordman/Demo/Scripts/Swordman.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/devScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/devScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Movement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Movement.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/RotateToMouse.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -81,6 +92,8 @@
       <updated>1677113806752</updated>
       <workItem from="1677113809173" duration="1430000" />
       <workItem from="1677174654627" duration="700000" />
+      <workItem from="1677176268816" duration="1290000" />
+      <workItem from="1677177619786" duration="6601000" />
     </task>
     <servers />
   </component>
