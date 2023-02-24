@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using Unity.Mathematics;
 using UnityEngine;
 
 public abstract class PlayerController :MonoBehaviour
@@ -15,6 +16,8 @@ public abstract class PlayerController :MonoBehaviour
     protected Animator MAnim;
 
     [Header("[Setting]")]
+    public float speedOfRunAnim = 0.3f;
+    public float minSpeedOfRunAnim = 0.3f;
     public float moveSpeed = 6;
     public int jumpCount = 2;
     public float jumpForce = 15f;
@@ -28,6 +31,11 @@ public abstract class PlayerController :MonoBehaviour
             return;
         IsLeft = bLeft;
         transform.localScale = new Vector3(bLeft ? 1 : -1, 1, 1);
+    }
+
+    protected float CalcSpeedOfRunAnim()
+    {
+        return Mathf.Max(mRigidbody.velocity.magnitude*speedOfRunAnim, minSpeedOfRunAnim);
     }
 
     protected bool MouseToTheLeft()
@@ -46,9 +54,7 @@ public abstract class PlayerController :MonoBehaviour
         onceJumpRayCheck = true;
         isGrounded = false;
 
-
         currentJumpCount++;
-
     }
 
     protected void DownJump()

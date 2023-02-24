@@ -15,6 +15,8 @@ public class GroundSensor : MonoBehaviour {
     ContactPoint2D[] _contacts = new ContactPoint2D[1];
     void OnTriggerStay2D(Collider2D other)
     {
+        if(enabled == false)
+            return;
         if (other.CompareTag($"Ground") || other.CompareTag($"Block"))
         {
             if (other.CompareTag($"Ground"))

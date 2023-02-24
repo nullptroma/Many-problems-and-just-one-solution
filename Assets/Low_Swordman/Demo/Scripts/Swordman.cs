@@ -1,12 +1,14 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class Swordman : PlayerController
 {
     private void Start()
     {
-        MCapsuleCollider  = this.transform.GetComponent<CapsuleCollider2D>();
+        MCapsuleCollider = this.transform.GetComponent<CapsuleCollider2D>();
         MAnim = this.transform.Find("model").GetComponent<Animator>();
         mRigidbody = this.transform.GetComponent<Rigidbody2D>();
         MainCamera = Camera.main;
@@ -14,10 +16,10 @@ public class Swordman : PlayerController
 
     private void Update()
     {
-        CheckFlip();
         CheckInput();
-        if (mRigidbody.velocity.magnitude > 30)
-            mRigidbody.velocity = new Vector2(mRigidbody.velocity.x - 0.1f, mRigidbody.velocity.y - 0.1f);
+        CheckFlip();
+        //if (mRigidbody.velocity.magnitude > 30)
+        //mRigidbody.velocity = new Vector2(mRigidbody.velocity.x - 0.1f, mRigidbody.velocity.y - 0.1f);
     }
 
     private void CheckFlip()
@@ -28,9 +30,14 @@ public class Swordman : PlayerController
             Flip(false);
     }
 
+    private void FixedUpdate()
+    {
+        mRigidbody.velocity = new Vector2(MMoveX * moveSpeed, mRigidbody.velocity.y);
+    }
+
     private void CheckInput()
     {
-        if (Input.GetKeyDown(KeyCode.S)) 
+        if (Input.GetKeyDown(KeyCode.S))
         {
             isSit = true;
             MAnim.Play("Sit");
@@ -40,7 +47,7 @@ public class Swordman : PlayerController
             MAnim.Play("Idle");
             isSit = false;
         }
-        
+
         if (MAnim.GetCurrentAnimatorStateInfo(0).IsName("Sit") || MAnim.GetCurrentAnimatorStateInfo(0).IsName("Die"))
         {
             if (Input.GetKeyDown(KeyCode.Space))
@@ -48,47 +55,28 @@ public class Swordman : PlayerController
                     DownJump();
             return;
         }
-        MMoveX = Input.GetAxis("Horizontal");
-   
-        GroundCheckUpdate();
-        
-        if (Input.GetKey(KeyCode.Mouse0))
-        {
-            //MAnim.Play("Attack");
-        }
-        else
-        {
-            if (MMoveX == 0)
-            {
-                if (!onceJumpRayCheck)
-                    MAnim.Play("Idle");
-            }
-            else
-                MAnim.Play("Run");
-        }
 
-        if (Input.GetKey(KeyCode.D))
-        {
-            if (isGrounded)
-                transform.transform.Translate(Vector2.right * (MMoveX * moveSpeed * Time.deltaTime));
-            else
-                transform.transform.Translate(new Vector3(MMoveX * moveSpeed * Time.deltaTime, 0, 0));
-            MAnim.SetFloat($"RunSpeed", IsLeft?-1:1);
-        }
-        else if (Input.GetKey(KeyCode.A))
-        {
-            if (isGrounded)
-                transform.transform.Translate(Vector2.right * (MMoveX * moveSpeed * Time.deltaTime));
-            else
-                transform.transform.Translate(new Vector3(MMoveX * moveSpeed * Time.deltaTime, 0, 0));
-            MAnim.SetFloat($"RunSpeed", IsLeft?1:-1);
-        }
+        MMoveX = Input.GetAxis("Horizontal");
+
+        GroundCheckUpdate();
+
+        if (MMoveX == 0)
+            MAnim.Play("Idle");
         else
+            MAnim.Play("Run");
+
+        if (isGrounded == false)
             MAnim.SetFloat($"RunSpeed", 1);
+        else if (Input.GetKey(KeyCode.D))
+            MAnim.SetFloat($"RunSpeed", CalcSpeedOfRunAnim() * (IsLeft ? -1 : 1));
+        else if (Input.GetKey(KeyCode.A))
+            MAnim.SetFloat($"RunSpeed", CalcSpeedOfRunAnim() * (IsLeft ? 1 : -1));
+        else
+            MAnim.SetFloat($"RunSpeed", CalcSpeedOfRunAnim());
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (currentJumpCount < jumpCount)  // 0 , 1
+            if (currentJumpCount < jumpCount) // 0 , 1
             {
                 if (!isSit)
                     PerformJump();

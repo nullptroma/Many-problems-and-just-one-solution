@@ -32,8 +32,8 @@ public class Movement : MonoBehaviour
         float moveVertical = Input.GetAxis("Vertical");
 
         Vector2 movement = new Vector2(moveHorizontal,  moveVertical);
-
-        _rb.AddForce(movement * speed);
+        _rb.velocity = movement * speed;
+        //_rb.AddForce(movement * speed, ForceMode2D.Force);
     }
 
     private void JumpLogic()
@@ -43,19 +43,19 @@ public class Movement : MonoBehaviour
                 _rb.AddForce(Vector3.up * jumpForce);
     }
 
-    void OnCollisionEnter(Collision collision)
+    void OnCollisionEnter2D(Collision2D collision)
     {
         IsGroundedUpate(collision, true);
     }
 
-    void OnCollisionExit(Collision collision)
+    void OnCollisionExit2D(Collision2D collision)
     {
         IsGroundedUpate(collision, false);
     }
 
-    private void IsGroundedUpate(Collision collision, bool value)
+    private void IsGroundedUpate(Collision2D collision, bool value)
     {
-        if (collision.gameObject.CompareTag(("Ground")))
+        if (collision.gameObject.CompareTag("Ground"))
         {
             _isGrounded = value;
         }
