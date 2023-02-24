@@ -3,21 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="149d77f2-9eff-4f57-8688-5f704ee7e0a4" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Many-problems-and-just-one-solution/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Many-problems-and-just-one-solution/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Low_Swordman/2.Animation/Attack.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Low_Swordman/2.Animation/Attack.anim" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Low_Swordman/2.Animation/Die.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Low_Swordman/2.Animation/Die.anim" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Low_Swordman/2.Animation/Idle.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Low_Swordman/2.Animation/Idle.anim" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Low_Swordman/2.Animation/Jump.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Low_Swordman/2.Animation/Jump.anim" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Low_Swordman/2.Animation/Run.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Low_Swordman/2.Animation/Run.anim" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Low_Swordman/2.Animation/Sit.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Low_Swordman/2.Animation/Sit.anim" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Low_Swordman/2.Animation/sword_man.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Low_Swordman/2.Animation/sword_man.controller" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Low_Swordman/Demo/Scripts/GroundSensor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Low_Swordman/Demo/Scripts/GroundSensor.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Low_Swordman/Demo/Scripts/PlayerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Low_Swordman/Demo/Scripts/PlayerController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Low_Swordman/Demo/Scripts/Swordman.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Low_Swordman/Demo/Scripts/Swordman.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/devScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/devScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Movement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Movement.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/RotateToMouse.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/RotateToMouse.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Magnetable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Magnetable.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Movement.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Movement.cs.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -26,8 +16,8 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="mock:///home/nullptr/Documents/Many-problems-and-just-one-solution/Assets/Scripts/Movement.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///home/nullptr/Documents/Many-problems-and-just-one-solution/Assets/Scripts/Movement.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/1c6a9ee382464549833cb1454bbe11bb159a00/54/8c6b149c/Component.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Magnet.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/RotateToMouse.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -106,7 +96,9 @@
       <workItem from="1677174654627" duration="700000" />
       <workItem from="1677176268816" duration="1290000" />
       <workItem from="1677177619786" duration="9530000" />
-      <workItem from="1677195246104" duration="4449000" />
+      <workItem from="1677195246104" duration="5066000" />
+      <workItem from="1677236311097" duration="3182000" />
+      <workItem from="1677239545015" duration="3839000" />
     </task>
     <servers />
   </component>

@@ -3,9 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Swordman : PlayerController
 {
+    [SerializeField] private Magnet magnet;
+    
     private void Start()
     {
         MCapsuleCollider = this.transform.GetComponent<CapsuleCollider2D>();
@@ -48,6 +51,14 @@ public class Swordman : PlayerController
             isSit = false;
         }
 
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+            magnet.Enabled = true;
+        else if(Input.GetKeyUp(KeyCode.Mouse0))
+            magnet.Enabled = false;
+
+        if (Input.GetKeyDown(KeyCode.Mouse1))
+            magnet.ChangeMode();
+
         if (MAnim.GetCurrentAnimatorStateInfo(0).IsName("Sit") || MAnim.GetCurrentAnimatorStateInfo(0).IsName("Die"))
         {
             if (Input.GetKeyDown(KeyCode.Space))
@@ -55,7 +66,6 @@ public class Swordman : PlayerController
                     DownJump();
             return;
         }
-
         MMoveX = Input.GetAxis("Horizontal");
 
         GroundCheckUpdate();
