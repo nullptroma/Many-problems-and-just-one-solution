@@ -12,7 +12,7 @@ public class RotateToMouse : MonoBehaviour
     {
         _mainCamera = Camera.main;
     }
-
+    
     // Update is called once per frame
     void LateUpdate()
     {

@@ -8,6 +8,7 @@ using UnityEngine.Serialization;
 public class Swordman : PlayerController
 {
     [SerializeField] private Magnet magnet;
+    [SerializeField] private FlipXScale flipper;
     
     private void Start()
     {
@@ -52,12 +53,15 @@ public class Swordman : PlayerController
         }
 
         if (Input.GetKeyDown(KeyCode.Mouse0))
-            magnet.Enabled = true;
+            magnet.SetEnableMagnet(true);
         else if(Input.GetKeyUp(KeyCode.Mouse0))
-            magnet.Enabled = false;
+            magnet.SetEnableMagnet(false);
 
         if (Input.GetKeyDown(KeyCode.Mouse1))
+        {
             magnet.ChangeMode();
+            flipper.Flip();
+        }
 
         if (MAnim.GetCurrentAnimatorStateInfo(0).IsName("Sit") || MAnim.GetCurrentAnimatorStateInfo(0).IsName("Die"))
         {
