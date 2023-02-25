@@ -28,19 +28,40 @@ public class Swordman : PlayerController
 
     private void CheckFlip()
     {
-        if (MouseToTheLeft())
-            Flip(true);
+        Flip(MouseToTheLeft());
+    }
+
+    private void HandleMovement()
+    {
+        float targetSpeed = moveSpeed * MMoveX;
+        float targetDelta = targetSpeed - mRigidbody.velocity.x;
+
+        float force;
+
+        if (MMoveX == 0)
+            force = walkBreakForce;
+        else if (MathF.Sign(MMoveX) * MathF.Sign(mRigidbody.velocity.x) < 0)
+            force = walkDecelerationForce;
         else
-            Flip(false);
+            force = walkAccelerationForce;
+        
+        force *= MathF.Sign(targetDelta);
+
+        mRigidbody.AddForce(new Vector2(force, 0), ForceMode2D.Force);
     }
 
     private void FixedUpdate()
     {
+        //HandleMovement();
+        if (isSit || isDie)
+            MMoveX = 0;
         mRigidbody.velocity = new Vector2(MMoveX * moveSpeed, mRigidbody.velocity.y);
     }
 
     private void CheckInput()
     {
+        if (Input.GetKeyDown(KeyCode.R) && loader != null)
+            loader.ReloadScene();
         if (Input.GetKeyDown(KeyCode.S))
         {
             isSit = true;
@@ -52,25 +73,31 @@ public class Swordman : PlayerController
             isSit = false;
         }
 
+        
+        if (isDie)
+        {
+            MMoveX = 0;
+            return;
+        }
         if (Input.GetKeyDown(KeyCode.Mouse0))
             magnet.SetEnableMagnet(true);
         else if(Input.GetKeyUp(KeyCode.Mouse0))
             magnet.SetEnableMagnet(false);
-
         if (Input.GetKeyDown(KeyCode.Mouse1))
         {
             magnet.ChangeMode();
             flipper.Flip();
         }
-
-        if (MAnim.GetCurrentAnimatorStateInfo(0).IsName("Sit") || MAnim.GetCurrentAnimatorStateInfo(0).IsName("Die"))
+        if (isSit)
         {
+            MMoveX = 0;
             if (Input.GetKeyDown(KeyCode.Space))
                 if (currentJumpCount < jumpCount)
                     DownJump();
             return;
         }
-        MMoveX = Input.GetAxis("Horizontal");
+        else
+            MMoveX = Input.GetAxis("Horizontal");
 
         GroundCheckUpdate();
 
@@ -98,6 +125,12 @@ public class Swordman : PlayerController
                     DownJump();
             }
         }
+    }
+
+    public void OnCollisionEnter2D(Collision2D col)
+    {
+        if(col.gameObject.CompareTag($"Kill"))
+            Die(true);
     }
 
 

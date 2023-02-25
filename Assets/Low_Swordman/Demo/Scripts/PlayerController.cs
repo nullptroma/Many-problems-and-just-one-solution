@@ -1,9 +1,12 @@
 ﻿using System.Collections;
 using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 
 public abstract class PlayerController :MonoBehaviour
 {
+    public bool isDie = false;
     public bool isSit = false;
     public int currentJumpCount = 0; 
     public bool isGrounded = false;
@@ -14,6 +17,7 @@ public abstract class PlayerController :MonoBehaviour
     public Rigidbody2D mRigidbody;
     protected CapsuleCollider2D MCapsuleCollider;
     protected Animator MAnim;
+    [SerializeField] protected LevelLoader loader;
 
     [Header("[Setting]")]
     public float speedOfRunAnim = 0.3f;
@@ -21,13 +25,16 @@ public abstract class PlayerController :MonoBehaviour
     public float moveSpeed = 6;
     public int jumpCount = 2;
     public float jumpForce = 15f;
+    public float walkAccelerationForce = 50f; 
+    public float walkBreakForce = 20f; 
+    public float walkDecelerationForce = 70f;
     
     protected Camera MainCamera;
 
     protected bool IsLeft = true;
     protected void Flip(bool bLeft)
     {
-        if(IsLeft == bLeft)
+        if(IsLeft == bLeft || isDie)
             return;
         IsLeft = bLeft;
         transform.localScale = new Vector3(bLeft ? 1 : -1, 1, 1);
@@ -51,10 +58,28 @@ public abstract class PlayerController :MonoBehaviour
 
         mRigidbody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
 
+        if (currentJumpCount == 0 && isGrounded == false)
+            currentJumpCount++;
+        
         onceJumpRayCheck = true;
         isGrounded = false;
 
         currentJumpCount++;
+    }
+
+    public void Die(bool d)
+    {
+        isDie = d;
+        if(isDie)
+            mRigidbody.velocity = new Vector2(0, mRigidbody.velocity.y);
+        MAnim.Play(isDie ? "Die" :"Idle");
+        StartCoroutine(Delay(2f, ()=>loader.ReloadScene()));
+    }
+
+    protected IEnumerator Delay(float sec, UnityAction action)
+    {
+        yield return new WaitForSeconds(sec);
+        action();
     }
 
     protected void DownJump()

@@ -1,18 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LevelLoader : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private Blackout bl;
+    public string nextSceneName;
+    private bool _reloading;
 
-    // Update is called once per frame
-    void Update()
+    public void ReloadScene()
     {
-        
+        if(_reloading || bl.Started)
+            return;
+        _reloading = true;
+        bl.Black(()=>SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex));
+    }
+    
+    public void NextScene()
+    {
+        SceneManager.LoadScene(nextSceneName);
     }
 }

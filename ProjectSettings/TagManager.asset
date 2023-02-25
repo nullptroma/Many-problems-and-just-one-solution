@@ -7,6 +7,10 @@ TagManager:
   - Ground
   - Block
   - Magnetable
+  - Ladder
+  - Platform
+  - Kill
+  - End
   layers:
   - Default
   - TransparentFX
