@@ -3,21 +3,16 @@
   <component name="ChangeListManager">
     <list default="true" id="149d77f2-9eff-4f57-8688-5f704ee7e0a4" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Many-problems-and-just-one-solution/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Many-problems-and-just-one-solution/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CrystalWorld/Scene/Demo.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CrystalWorld/Scene/Demo.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Low_Swordman/2.Animation/Die.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Low_Swordman/2.Animation/Die.anim" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Low_Swordman/2.Animation/sword_man.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Low_Swordman/2.Animation/sword_man.controller" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Low_Swordman/Demo/Scripts/PlayerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Low_Swordman/Demo/Scripts/PlayerController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Low_Swordman/Demo/Scripts/Swordman.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Low_Swordman/Demo/Scripts/Swordman.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Magnet.physicsMaterial2D" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Magnet.physicsMaterial2D" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Player_SwordMan 1.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Player_SwordMan 1.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Object Prefab.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Object Prefab.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Level1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Level1.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Menu.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Menu.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/devScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/devScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/LevelLoader.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/LevelLoader.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MainMenu.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MainMenu.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/RotateToMouse.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/RotateToMouse.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Sprite-0003.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Sprite-0003.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/InputManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/InputManager.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/Physics2DSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/Physics2DSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,6 +23,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/1c6a9ee382464549833cb1454bbe11bb159a00/54/8c6b149c/Component.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/EndOfLevel.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/FlipXScale.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/GameButtons/GameButton.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Magnet.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/RotateToMouse.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/BlackoutEnabler.cs" root0="FORCE_HIGHLIGHTING" />
@@ -117,7 +113,8 @@
       <workItem from="1677264774135" duration="5228000" />
       <workItem from="1677324788856" duration="15588000" />
       <workItem from="1677358113872" duration="2983000" />
-      <workItem from="1677363850581" duration="420000" />
+      <workItem from="1677363850581" duration="1447000" />
+      <workItem from="1677416087841" duration="11203000" />
     </task>
     <servers />
   </component>

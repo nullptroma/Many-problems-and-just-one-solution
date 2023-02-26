@@ -17,8 +17,7 @@ public class RotateToMouse : MonoBehaviour
     void LateUpdate()
     {
         Vector3 difference = _mainCamera.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-        float rotateZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0f, 0f, rotateZ-90);
+        transform.rotation = Quaternion.FromToRotation(Vector3.up, (Vector2)difference);
         var newDot = Vector2.Lerp(from.position, _mainCamera.ScreenToWorldPoint(Input.mousePosition), maxShift);
         subject.position = new Vector3(newDot.x, newDot.y, subject.position.z);
     }

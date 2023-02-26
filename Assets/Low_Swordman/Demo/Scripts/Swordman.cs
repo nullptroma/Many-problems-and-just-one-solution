@@ -30,32 +30,24 @@ public class Swordman : PlayerController
     {
         Flip(MouseToTheLeft());
     }
-
-    private void HandleMovement()
-    {
-        float targetSpeed = moveSpeed * MMoveX;
-        float targetDelta = targetSpeed - mRigidbody.velocity.x;
-
-        float force;
-
-        if (MMoveX == 0)
-            force = walkBreakForce;
-        else if (MathF.Sign(MMoveX) * MathF.Sign(mRigidbody.velocity.x) < 0)
-            force = walkDecelerationForce;
-        else
-            force = walkAccelerationForce;
-        
-        force *= MathF.Sign(targetDelta);
-
-        mRigidbody.AddForce(new Vector2(force, 0), ForceMode2D.Force);
-    }
-
+    
     private void FixedUpdate()
     {
-        //HandleMovement();
         if (isSit || isDie)
             MMoveX = 0;
-        mRigidbody.velocity = new Vector2(MMoveX * moveSpeed, mRigidbody.velocity.y);
+        var velocity = mRigidbody.velocity;
+        if (MMoveX != 0)
+        {
+            if(isGrounded)
+                velocity.x = Mathf.MoveTowards(velocity.x, moveSpeed * MMoveX, walkAcceleration*Time.deltaTime);
+            else
+                velocity.x = Mathf.MoveTowards(velocity.x, moveSpeed * MMoveX, airAcceleration*Time.deltaTime);
+        }
+        else if(isGrounded)
+            velocity.x = Mathf.MoveTowards(velocity.x, 0, groundDeceleration*Time.deltaTime);
+        else
+            velocity.x = Mathf.MoveTowards(velocity.x, 0, airDeceleration*Time.deltaTime);
+        mRigidbody.velocity = velocity;
     }
 
     private void CheckInput()

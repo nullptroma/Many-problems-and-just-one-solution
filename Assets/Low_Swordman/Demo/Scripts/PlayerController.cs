@@ -25,9 +25,10 @@ public abstract class PlayerController :MonoBehaviour
     public float moveSpeed = 6;
     public int jumpCount = 2;
     public float jumpForce = 15f;
-    public float walkAccelerationForce = 50f; 
-    public float walkBreakForce = 20f; 
-    public float walkDecelerationForce = 70f;
+    public float walkAcceleration = 50f; 
+    public float groundDeceleration = 100f; 
+    public float airAcceleration = 20f; 
+    public float airDeceleration = 20f; 
     
     protected Camera MainCamera;
 
@@ -54,7 +55,7 @@ public abstract class PlayerController :MonoBehaviour
     {
         MAnim.Play("Jump");
 
-        mRigidbody.velocity = new Vector2(0, 0);
+        mRigidbody.velocity = new Vector2(mRigidbody.velocity.x, 0);
 
         mRigidbody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
 
