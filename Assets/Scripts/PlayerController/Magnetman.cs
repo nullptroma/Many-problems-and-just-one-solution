@@ -5,7 +5,7 @@ using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-public class Swordman : PlayerController
+public class Magnetman : PlayerController
 {
     [SerializeField] private Magnet magnet;
     [SerializeField] private FlipXScale flipper;

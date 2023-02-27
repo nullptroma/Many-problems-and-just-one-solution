@@ -383,7 +383,6 @@ GameObject:
   - component: {fileID: 559235735}
   - component: {fileID: 559235739}
   - component: {fileID: 559235741}
-  - component: {fileID: 559235740}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -493,19 +492,6 @@ MonoBehaviour:
   prevLvlButton: {fileID: 8115327860123127726}
   currLvlText: {fileID: 950925092}
   maxLvl: 5
---- !u!114 &559235740
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 559235734}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4fe4e233fc1499a64814e54601804824, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bl: {fileID: 1322456323}
 --- !u!114 &559235741
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -518,7 +504,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e07b95ec3a4e65e658828e40f8639d80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bl: {fileID: 1322456323}
   nextSceneName: 
 --- !u!1 &671107613
 GameObject:
@@ -1493,17 +1478,6 @@ MonoBehaviour:
   maxDist: 0
   power: 20
   stablePower: 1
---- !u!114 &1322456323 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 316828931432563776, guid: e66283cd31dad88ca8e5f8b426a564d1, type: 3}
-  m_PrefabInstance: {fileID: 817967484}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9accf276491e6d982ac29b1c55fab8bd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!224 &1322456326 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 316828931432563781, guid: e66283cd31dad88ca8e5f8b426a564d1, type: 3}

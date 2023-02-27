@@ -8,7 +8,6 @@ public class MagnetContainer : MonoBehaviour
     public float q = 1f;
     private Rigidbody2D _rb;
     
-    // Start is called before the first frame update
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
@@ -18,11 +17,5 @@ public class MagnetContainer : MonoBehaviour
             mag.q = q / mags.Length;
             mag.GetComponent<Joint2D>().connectedBody = _rb;
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

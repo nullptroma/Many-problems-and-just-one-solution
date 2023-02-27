@@ -1,43 +1,52 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class Blackout : MonoBehaviour
 {
-    [SerializeField] private Image _image;
-    [SerializeField] [Range(0,1)] private float _maxA = 1f;
-    [SerializeField] private float _speed = 2f;
-    [SerializeField] private float _delayOnBlack =0.1f;
+    [SerializeField] private Image image;
+    [SerializeField] [Range(0,1)] private float maxA = 1f;
+    [SerializeField] private float speed = 2f;
+    [SerializeField] private float delayOnBlack =0.1f;
 
-    public bool Started { get; private set;  } = false;
-    public void StartBlackoutCycle(Action callbackOnBlack, float delayOnBlack = -1)
+    private void Awake()
     {
-        if(Started == false)
-            StartCoroutine(DoBlackoutCycle(callbackOnBlack, delayOnBlack));
+        var color = image.color;
+        color.a = 1;
+        image.color = color;
+        StartBlackoutCycle(()=>{});
     }
 
-    private IEnumerator DoBlackoutCycle(Action callbackOnBlack, float delayOnBlack = -1)
+    public bool Started { get; private set;  } = false;
+    public void StartBlackoutCycle(Action callbackOnBlack, float delay = -1)
+    {
+        if(Started == false)
+            StartCoroutine(DoBlackoutCycle(callbackOnBlack, delay));
+    }
+
+    private IEnumerator DoBlackoutCycle(Action callbackOnBlack, float delay = -1)
     {
         Started = true;
-        _image.raycastTarget = true;
-        if (delayOnBlack < 0)
-            delayOnBlack = _delayOnBlack;
-        while (_image.color.a < _maxA)
+        image.raycastTarget = true;
+        if (delay < 0)
+            delay = delayOnBlack;
+        while (image.color.a < maxA)
         {
-            _image.color = new Color(_image.color.r, _image.color.g, _image.color.b, _image.color.a + Time.deltaTime * _speed);
+            image.color = new Color(image.color.r, image.color.g, image.color.b, image.color.a + Time.deltaTime * speed);
             yield return null;
         }
         yield return null;
         callbackOnBlack();
         yield return null;
-        yield return new WaitForSeconds(delayOnBlack);
-        while (_image.color.a > 0)
+        yield return new WaitForSeconds(delay);
+        while (image.color.a > 0)
         {
-            _image.color = new Color(_image.color.r, _image.color.g, _image.color.b, _image.color.a - Time.deltaTime * _speed);
+            image.color = new Color(image.color.r, image.color.g, image.color.b, image.color.a - Time.deltaTime * speed);
             yield return null;
         }
-        _image.raycastTarget = false;
+        image.raycastTarget = false;
         Started = false;
     }
 
@@ -50,15 +59,15 @@ public class Blackout : MonoBehaviour
     private IEnumerator DoBlack(Action callback)
     {
         Started = true;
-        _image.raycastTarget = true;
-        while (_image.color.a < _maxA)
+        image.raycastTarget = true;
+        while (image.color.a < maxA)
         {
-            _image.color = new Color(_image.color.r, _image.color.g, _image.color.b, _image.color.a + Time.deltaTime * _speed);
+            image.color = new Color(image.color.r, image.color.g, image.color.b, image.color.a + Time.deltaTime * speed);
             yield return null;
         }
         yield return null;
         callback();
-        _image.raycastTarget = false;
+        image.raycastTarget = false;
         Started = false;
     }
 }

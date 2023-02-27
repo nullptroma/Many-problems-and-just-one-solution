@@ -5,22 +5,13 @@ using UnityEngine;
 
 public class DynamicGround : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    private int _count = 0;
+    
     private void OnCollisionEnter2D(Collision2D col)
     {
         if (col.gameObject.CompareTag($"Ground"))
         {
+            _count++;
             tag = $"Ground";
         }
     }
@@ -29,7 +20,9 @@ public class DynamicGround : MonoBehaviour
     {
         if (other.gameObject.CompareTag($"Ground"))
         {
-            tag = $"Untagged";
+            _count--;
+            if(_count <= 0)
+                tag = $"Untagged";
         }
     }
 }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MagnetableList : MonoBehaviour
+public class MagnetableDetector : MonoBehaviour
 {
     public readonly HashSet<Magnetable> Magnetables = new HashSet<Magnetable>();
 

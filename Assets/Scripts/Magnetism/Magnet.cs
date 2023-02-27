@@ -4,36 +4,36 @@ using UnityEngine;
 
 public class Magnet : MonoBehaviour
 {
-    public float q = 1f;
-    private bool Enabled { get; set; }
+    [SerializeField] private float q = 1f;
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Transform dot;
     private BoxCollider2D _col;
-    private MagnetStatus _status;
-    private MagnetableList _ml;
+    private MagnetMode _mode;
+    private MagnetableDetector _ml;
+    private bool _enabled = false;
 
+    private void Start()
+    {
+        _ml = GetComponentsInChildren<MagnetableDetector>().Single();
+        _col = GetComponentsInChildren<BoxCollider2D>().Single();
+    }
+    
     public void ChangeMode()
     {
-        _status = _status == MagnetStatus.Attraction ? MagnetStatus.Repulsion : MagnetStatus.Attraction;
+        _mode = _mode == MagnetMode.Attraction ? MagnetMode.Repulsion : MagnetMode.Attraction;
     }
 
     public void SetEnableMagnet(bool e)
     {
-        Enabled = e;
+        _enabled = e;
         _col.sharedMaterial.friction = e ? 0.4f : 0;
-    }
-
-    private void Start()
-    {
-        _ml = GetComponentsInChildren<MagnetableList>().Single();
-        _col = GetComponentsInChildren<BoxCollider2D>().Single();
     }
 
     private void FixedUpdate()
     {
-        if (Enabled)                                                                                                                                                                                  
+        if (_enabled)                                                                                                                                                                                  
         {
-            float charge = q * (_status == MagnetStatus.Repulsion ? -1 : 1);
+            float charge = q * (_mode == MagnetMode.Repulsion ? -1 : 1);
             foreach (var mag in _ml.Magnetables)
             {
                 var position = dot.position;
@@ -45,7 +45,7 @@ public class Magnet : MonoBehaviour
         }
     }
 
-    private enum MagnetStatus
+    private enum MagnetMode
     {
         Attraction,
         Repulsion

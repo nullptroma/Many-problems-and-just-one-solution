@@ -381,10 +381,10 @@ GameObject:
   m_Component:
   - component: {fileID: 8674198310081025182}
   - component: {fileID: 8688730304526931734}
-  - component: {fileID: 8677924960395153912}
-  - component: {fileID: 8688730304526931735}
   - component: {fileID: 6871884234729040257}
-  - component: {fileID: 3669791173729168701}
+  - component: {fileID: 8677924960395153912}
+  - component: {fileID: 6754469187279673378}
+  - component: {fileID: 8688730304526931735}
   m_Layer: 7
   m_Name: Player_SwordMan 1
   m_TagString: Player
@@ -422,8 +422,24 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.003753662, y: -0.28777957}
-  m_Size: {x: 0.32198334, y: 0.33357477}
+  m_Offset: {x: -0.003753662, y: -0.26889527}
+  m_Size: {x: 0.32198334, y: 0.32198334}
+  m_Direction: 0
+--- !u!70 &6871884234729040257
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8676818345807567462}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 6200000, guid: bcfd1007b40a0c542b845d62451fc503, type: 2}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.013401851, y: 0.056179017}
+  m_Size: {x: 0.3931963, y: 0.7930291}
   m_Direction: 0
 --- !u!114 &8677924960395153912
 MonoBehaviour:
@@ -437,19 +453,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0f929248d997d24fa80adaa46f30d2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isDie: 0
   isSit: 0
   currentJumpCount: 0
   isGrounded: 0
   onceJumpRayCheck: 0
   isDownJumpGroundCheck: 0
   mRigidbody: {fileID: 0}
+  loader: {fileID: 0}
   speedOfRunAnim: 0.25
   minSpeedOfRunAnim: 0.3
   moveSpeed: 5
   jumpCount: 2
   jumpForce: 9
+  walkAcceleration: 50
+  groundDeceleration: 100
+  airAcceleration: 20
+  airDeceleration: 20
   magnet: {fileID: 8835812280543140473}
   flipper: {fileID: 8888496730947158448}
+--- !u!114 &6754469187279673378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8676818345807567462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d890ebdc10b2c1418c8f673f4a023df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weight: 1
 --- !u!50 &8688730304526931735
 Rigidbody2D:
   serializedVersion: 4
@@ -471,38 +506,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!70 &6871884234729040257
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8676818345807567462}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 6200000, guid: bcfd1007b40a0c542b845d62451fc503, type: 2}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.17, y: 0.07769358}
-  m_Size: {x: 0.08, y: 0.75}
-  m_Direction: 0
---- !u!70 &3669791173729168701
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8676818345807567462}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 6200000, guid: bcfd1007b40a0c542b845d62451fc503, type: 2}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.17, y: 0.07769358}
-  m_Size: {x: 0.08, y: 0.75}
-  m_Direction: 0
 --- !u!1 &8676905271860789290
 GameObject:
   m_ObjectHideFlags: 0

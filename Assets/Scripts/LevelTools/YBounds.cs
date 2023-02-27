@@ -8,8 +8,8 @@ using UnityEngine.Serialization;
 public class YBounds : MonoBehaviour
 {
     [SerializeField] private float maxDist;
-    public float power = 5f;
-    public float stablePower = 0.5f;
+    [SerializeField] private float power = 5f;
+    [SerializeField] private float stablePower = 0.5f;
     private float _start;
     private Rigidbody2D _rb;
     

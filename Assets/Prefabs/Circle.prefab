@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 35ef8e2d8bc462df7b00e5592ae6a0eb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -131,7 +131,7 @@ CircleCollider2D:
   m_GameObject: {fileID: 4383526156946150523}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 1db301d2ddf912ae68a74014bdb6b715, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -153,7 +153,7 @@ GameObject:
   - component: {fileID: 4383526157833298719}
   - component: {fileID: 4383526157833298716}
   m_Layer: 0
-  m_Name: M1 (5)
+  m_Name: M1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -255,7 +255,7 @@ FixedJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: -0.056289285, y: -0.09792106}
+  m_ConnectedAnchor: {x: -0.48473406, y: -0.9235341}
   m_DampingRatio: 0
   m_Frequency: 0
 --- !u!50 &4383526157833298719
