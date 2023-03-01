@@ -1,18 +1,16 @@
 ﻿using System.Collections;
-using Unity.Mathematics;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
 public abstract class PlayerController :MonoBehaviour
 {
-    public bool isDie = false;
-    public bool isSit = false;
-    public int currentJumpCount = 0; 
-    public bool isGrounded = false;
-    public bool onceJumpRayCheck = false;
+    protected bool IsDie;
+    protected bool IsSit = false;
+    protected int CurrentJumpCount; 
+    protected bool IsGrounded;
+    private bool OnceJumpRayCheck;
 
-    public bool isDownJumpGroundCheck = false; 
+    public bool isDownJumpGroundCheck; 
     protected float MMoveX;
     public Rigidbody2D mRigidbody;
     protected CapsuleCollider2D MCapsuleCollider;
@@ -35,10 +33,17 @@ public abstract class PlayerController :MonoBehaviour
     protected bool IsLeft = true;
     protected void Flip(bool bLeft)
     {
-        if(IsLeft == bLeft || isDie)
+        if(IsLeft == bLeft || IsDie)
             return;
         IsLeft = bLeft;
         transform.localScale = new Vector3(bLeft ? 1 : -1, 1, 1);
+    }
+
+    public void SetIsGrounded(bool grounded)
+    {
+        IsGrounded = grounded;
+        if (IsGrounded)
+            CurrentJumpCount = 0;
     }
 
     protected float CalcSpeedOfRunAnim()
@@ -59,25 +64,25 @@ public abstract class PlayerController :MonoBehaviour
 
         mRigidbody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
 
-        if (currentJumpCount == 0 && isGrounded == false)
-            currentJumpCount++;
+        if (CurrentJumpCount == 0 && IsGrounded == false)
+            CurrentJumpCount++;
         
-        onceJumpRayCheck = true;
-        isGrounded = false;
+        OnceJumpRayCheck = true;
+        IsGrounded = false;
 
-        currentJumpCount++;
+        CurrentJumpCount++;
     }
 
     public void Die(bool d)
     {
-        isDie = d;
-        if(isDie)
+        IsDie = d;
+        if(IsDie)
             mRigidbody.velocity = new Vector2(0, mRigidbody.velocity.y);
-        MAnim.Play(isDie ? "Die" :"Idle");
+        MAnim.Play(IsDie ? "Die" :"Idle");
         StartCoroutine(Delay(2f, ()=>loader.ReloadScene()));
     }
 
-    protected IEnumerator Delay(float sec, UnityAction action)
+    private IEnumerator Delay(float sec, UnityAction action)
     {
         yield return new WaitForSeconds(sec);
         action();
@@ -85,7 +90,7 @@ public abstract class PlayerController :MonoBehaviour
 
     protected void DownJump()
     {
-        if (!isGrounded)
+        if (!IsGrounded)
             return;
 
         if (!isDownJumpGroundCheck)
@@ -93,7 +98,7 @@ public abstract class PlayerController :MonoBehaviour
             MAnim.Play("Jump");
 
             mRigidbody.AddForce(-Vector2.up * 10);
-            isGrounded = false;
+            IsGrounded = false;
 
             MCapsuleCollider.enabled = false;
 
@@ -114,7 +119,7 @@ public abstract class PlayerController :MonoBehaviour
 
     protected void GroundCheckUpdate()
     {
-        if (!onceJumpRayCheck)
+        if (!OnceJumpRayCheck)
             return;
         _groundCheckUpdateTic += Time.deltaTime;
         if (_groundCheckUpdateTic > GroundCheckUpdateTime)
@@ -131,10 +136,10 @@ public abstract class PlayerController :MonoBehaviour
 
             if (reY <= 0)
             {
-                if (isGrounded)
+                if (IsGrounded)
                 {
                     LandingEvent();
-                    onceJumpRayCheck = false;
+                    OnceJumpRayCheck = false;
                 }
             }
             _pretmpY = transform.position.y;

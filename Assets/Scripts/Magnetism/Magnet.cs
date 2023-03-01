@@ -7,8 +7,9 @@ public class Magnet : MonoBehaviour
     [SerializeField] private float q = 1f;
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Transform dot;
+    [SerializeField] private Animator animator;
     private BoxCollider2D _col;
-    private MagnetMode _mode;
+    public MagnetMode Mode { get; private set; } = MagnetMode.Attraction;
     private MagnetableDetector _ml;
     private bool _enabled = false;
 
@@ -18,13 +19,14 @@ public class Magnet : MonoBehaviour
         _col = GetComponentsInChildren<BoxCollider2D>().Single();
     }
     
-    public void ChangeMode()
+    public void SetMode(MagnetMode mode)
     {
-        _mode = _mode == MagnetMode.Attraction ? MagnetMode.Repulsion : MagnetMode.Attraction;
+        Mode = mode;
     }
 
     public void SetEnableMagnet(bool e)
     {
+        animator.SetBool($"IsWork", e);
         _enabled = e;
         _col.sharedMaterial.friction = e ? 0.4f : 0;
     }
@@ -33,7 +35,7 @@ public class Magnet : MonoBehaviour
     {
         if (_enabled)                                                                                                                                                                                  
         {
-            float charge = q * (_mode == MagnetMode.Repulsion ? -1 : 1);
+            float charge = q * (Mode == MagnetMode.Repulsion ? -1 : 1);
             foreach (var mag in _ml.Magnetables)
             {
                 var position = dot.position;
@@ -45,7 +47,7 @@ public class Magnet : MonoBehaviour
         }
     }
 
-    private enum MagnetMode
+    public enum MagnetMode
     {
         Attraction,
         Repulsion

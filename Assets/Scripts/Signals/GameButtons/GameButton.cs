@@ -25,7 +25,6 @@ public class GameButton : SignalSenderBehaviour
     private HashSet<ButtonWeightable> _bws = new HashSet<ButtonWeightable>();
     public void Step(ButtonWeightable bw)
     {
-        Debug.Log($"Step: {bw.weight}, {bw.gameObject.name}");
         _pressed = bw.weight >= minWeight;
         StateChanged?.Invoke(this, EventArgs.Empty);
         AnimUpdate();

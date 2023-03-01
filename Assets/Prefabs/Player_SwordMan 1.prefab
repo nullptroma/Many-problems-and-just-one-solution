@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8835812280543140468}
   - component: {fileID: 8835812280543140474}
   - component: {fileID: 8835812280543140473}
+  - component: {fileID: 1226895043817380829}
   m_Layer: 6
   m_Name: Magnet
   m_TagString: Untagged
@@ -77,7 +78,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 1a69deca4815ec788808b9e9cdf38f8a, type: 3}
+  m_Sprite: {fileID: 1279034693, guid: 073267f2a2c4b5c1392f71861090d0a7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -101,7 +102,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 1.7}
+  m_Offset: {x: 0, y: 0.639198}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -112,7 +113,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 4.04, y: 0.85}
+  m_Size: {x: 4.04, y: 2.8345375}
   m_EdgeRadius: 0
 --- !u!114 &8835812280543140473
 MonoBehaviour:
@@ -129,6 +130,27 @@ MonoBehaviour:
   q: 70
   rb: {fileID: 8688730304526931735}
   dot: {fileID: 8677924961684356287}
+  animator: {fileID: 1226895043817380829}
+--- !u!95 &1226895043817380829
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8676206904750614630}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: aa6d6c88258a1895095d8833c010ecc0, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!1 &8676302876319397694
 GameObject:
   m_ObjectHideFlags: 0
@@ -453,11 +475,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0f929248d997d24fa80adaa46f30d2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isDie: 0
-  isSit: 0
-  currentJumpCount: 0
-  isGrounded: 0
-  onceJumpRayCheck: 0
   isDownJumpGroundCheck: 0
   mRigidbody: {fileID: 0}
   loader: {fileID: 0}
@@ -468,7 +485,7 @@ MonoBehaviour:
   jumpForce: 9
   walkAcceleration: 50
   groundDeceleration: 100
-  airAcceleration: 20
+  airAcceleration: 15
   airDeceleration: 20
   magnet: {fileID: 8835812280543140473}
   flipper: {fileID: 8888496730947158448}

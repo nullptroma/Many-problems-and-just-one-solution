@@ -8,13 +8,15 @@ public class MagnetableDetector : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.CompareTag("Magnetable"))
-            Magnetables.Add(other.GetComponent<Magnetable>());
+        if (other.CompareTag($"Magnetable") && other.gameObject.TryGetComponent(out Magnetable m))
+            Magnetables.Add(m);
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if(other.CompareTag($"Magnetable"))
-            Magnetables.Remove(other.gameObject.GetComponent<Magnetable>());
+        if (other.gameObject.TryGetComponent(out Magnetable m))
+        {
+            Magnetables.Remove(m);
+        }
     }
 }

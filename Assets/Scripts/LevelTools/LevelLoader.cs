@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -32,6 +29,12 @@ public class LevelLoader : MonoBehaviour
             _bl.Black(() => Load(nextSceneName));
         else
             Load(nextSceneName);
+    }
+
+    public void LoadMenu()
+    {
+        if(!SceneManager.GetActiveScene().name.Equals("Menu"))
+            _bl.Black(() => Load("Menu"));
     }
 
     private void Load(string sceneName)

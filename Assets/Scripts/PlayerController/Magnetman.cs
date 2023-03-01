@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.Mathematics;
-using UnityEngine;
-using UnityEngine.Serialization;
+﻿using UnityEngine;
 
 public class Magnetman : PlayerController
 {
@@ -22,8 +17,6 @@ public class Magnetman : PlayerController
     {
         CheckInput();
         CheckFlip();
-        //if (mRigidbody.velocity.magnitude > 30)
-        //mRigidbody.velocity = new Vector2(mRigidbody.velocity.x - 0.1f, mRigidbody.velocity.y - 0.1f);
     }
 
     private void CheckFlip()
@@ -33,58 +26,78 @@ public class Magnetman : PlayerController
     
     private void FixedUpdate()
     {
-        if (isSit || isDie)
+        if (IsSit || IsDie)
             MMoveX = 0;
         var velocity = mRigidbody.velocity;
         if (MMoveX != 0)
-        {
-            if(isGrounded)
-                velocity.x = Mathf.MoveTowards(velocity.x, moveSpeed * MMoveX, walkAcceleration*Time.deltaTime);
-            else
-                velocity.x = Mathf.MoveTowards(velocity.x, moveSpeed * MMoveX, airAcceleration*Time.deltaTime);
-        }
-        else if(isGrounded)
+            velocity.x = IsGrounded ? Mathf.MoveTowards(velocity.x, moveSpeed * MMoveX, walkAcceleration*Time.deltaTime) : Mathf.MoveTowards(velocity.x, moveSpeed * MMoveX, airAcceleration*Time.deltaTime);
+        else if(IsGrounded)
             velocity.x = Mathf.MoveTowards(velocity.x, 0, groundDeceleration*Time.deltaTime);
         else
             velocity.x = Mathf.MoveTowards(velocity.x, 0, airDeceleration*Time.deltaTime);
         mRigidbody.velocity = velocity;
     }
 
+    private void SetMagnetMode(Magnet.MagnetMode mode)
+    {
+        if(magnet.Mode != mode)
+            flipper.Flip();
+        magnet.SetMode(mode);
+    }
+
     private void CheckInput()
     {
         if (Input.GetKeyDown(KeyCode.R) && loader != null)
             loader.ReloadScene();
+        if (Input.GetKeyDown(KeyCode.Escape) && loader != null)
+            loader.LoadMenu();
         if (Input.GetKeyDown(KeyCode.S))
         {
-            isSit = true;
+            IsSit = true;
             MAnim.Play("Sit");
         }
         else if (Input.GetKeyUp(KeyCode.S))
         {
             MAnim.Play("Idle");
-            isSit = false;
+            IsSit = false;
         }
 
         
-        if (isDie)
+        if (IsDie)
         {
             MMoveX = 0;
             return;
         }
+
         if (Input.GetKeyDown(KeyCode.Mouse0))
-            magnet.SetEnableMagnet(true);
-        else if(Input.GetKeyUp(KeyCode.Mouse0))
-            magnet.SetEnableMagnet(false);
-        if (Input.GetKeyDown(KeyCode.Mouse1))
         {
-            magnet.ChangeMode();
-            flipper.Flip();
+            SetMagnetMode(Magnet.MagnetMode.Attraction);
+            magnet.SetEnableMagnet(true);
+        } 
+        else if (Input.GetKeyDown(KeyCode.Mouse1))
+        {
+            SetMagnetMode(Magnet.MagnetMode.Repulsion);
+            magnet.SetEnableMagnet(true);
+        }     
+        else if (Input.GetKeyUp(KeyCode.Mouse0))//лкм поднята
+        {
+            bool rmb = Input.GetKey(KeyCode.Mouse1);
+            if(rmb)
+                SetMagnetMode(Magnet.MagnetMode.Repulsion);
+            magnet.SetEnableMagnet(rmb);
         }
-        if (isSit)
+        else if (Input.GetKeyUp(KeyCode.Mouse1))//пкм поднята
+        {
+            bool lmb = Input.GetKey(KeyCode.Mouse0);
+            if(lmb)
+                SetMagnetMode(Magnet.MagnetMode.Attraction);
+            magnet.SetEnableMagnet(lmb);
+        }
+        if (IsSit)
         {
             MMoveX = 0;
             if (Input.GetKeyDown(KeyCode.Space))
-                if (currentJumpCount < jumpCount)
+                if (CurrentJumpCount < jumpCount)
                     DownJump();
             return;
         }
@@ -93,12 +106,9 @@ public class Magnetman : PlayerController
 
         GroundCheckUpdate();
 
-        if (MMoveX == 0)
-            MAnim.Play("Idle");
-        else
-            MAnim.Play("Run");
+        MAnim.Play(MMoveX == 0 ? "Idle" : "Run");
 
-        if (isGrounded == false)
+        if (IsGrounded == false)
             MAnim.SetFloat($"RunSpeed", 1);
         else if (Input.GetKey(KeyCode.D))
             MAnim.SetFloat($"RunSpeed", CalcSpeedOfRunAnim() * (IsLeft ? -1 : 1));
@@ -109,9 +119,9 @@ public class Magnetman : PlayerController
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (currentJumpCount < jumpCount) // 0 , 1
+            if (CurrentJumpCount < jumpCount) // 0 , 1
             {
-                if (!isSit)
+                if (!IsSit)
                     PerformJump();
                 else
                     DownJump();

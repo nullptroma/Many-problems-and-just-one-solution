@@ -1,22 +1,20 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using Interfaces;
 using UnityEngine;
 
 public class SignalInvert : SignalSenderBehaviour
 {
-    [SerializeField] private SignalSenderBehaviour sender;
+    public override event EventHandler StateChanged;
+    [SerializeField] private SignalSenderBehaviour signaler;
 
     private void Start()
     {
-        sender.StateChanged += StateChanged;
+        signaler.StateChanged += (sender, e)=>StateChanged?.Invoke(this, e);
     }
 
     public override bool GetValue()
     {
-        return !sender.GetValue();
+        return !signaler.GetValue();
     }
 
-    public override event EventHandler StateChanged;
 }
